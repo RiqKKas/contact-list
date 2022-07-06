@@ -20,7 +20,7 @@ const path = require('path');
 
 //seguranca
 const csurf = require('csurf');
-const { checkCsurfError, includeVerificationToken } = require('./src/middlewares/security');
+const { checkCsurfError, includeVerificationToken, addGlobalVariables } = require('./src/middlewares/security');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -50,7 +50,8 @@ app.set('view engine', 'ejs'); //engine pra renderizacao de ejs
 
 app.use(csurf());
 app.use(includeVerificationToken);
-app.use(checkCsurfError); 
+app.use(checkCsurfError);
+app.use(addGlobalVariables);
 app.use(routes);
 
 app.on('connectedDB', () => {

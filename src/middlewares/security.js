@@ -1,7 +1,6 @@
 function checkCsurfError(err, req, res, next) {
-  if (err && err.code === 'EBADCSRFTOKEN') {
-    return res.render('404');
-  }
+  if (err) return res.render('404');
+  next();
 }
 
 function includeVerificationToken(req, res, next) {
@@ -9,4 +8,10 @@ function includeVerificationToken(req, res, next) {
   next();
 }
 
-module.exports = { checkCsurfError, includeVerificationToken };
+function addGlobalVariables(req, res, next) {
+  res.locals.errors = req.flash('errors');
+  res.locals.success = req.flash('success');
+  next();
+}
+
+module.exports = { checkCsurfError, includeVerificationToken, addGlobalVariables };
