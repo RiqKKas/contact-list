@@ -1,0 +1,14 @@
+.table tr td {
+  border: none;
+}
+
+@media all and (max-width: 800px) {
+  .table tr {
+    border: 1px solid #dad6eb;
+  }
+
+  .table tr td {
+    display: block;
+    text-align: center;
+  }
+}

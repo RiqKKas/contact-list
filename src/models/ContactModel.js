@@ -1,9 +1,8 @@
-const { Schema, model, isValidObjectId } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const validator = require('validator');
 
 const ContactSchema = new Schema({
   nome: { type: String, required: true },
-  sobrenome: { type: String, required: false, default: '' },
   email: { type: String, required: false, default: '' },
   telefone: { type: String, required: false, default: '' },
   user_id: { type: String, required: true },
@@ -13,23 +12,21 @@ const ContactSchema = new Schema({
 const ContactModel = model('Contact', ContactSchema);
 
 class Contact {
-  constructor({ nome, sobrenome, email, telefone }, userId) {
+  constructor({ nome, email, telefone }, userId) {
     this.nome = this.cleanUp(nome);
-    this.sobrenome = this.cleanUp(sobrenome);
     this.email = this.cleanUp(email);
     this.telefone = this.cleanUp(telefone);
     this.userId = this.cleanUp(userId);
     this.errors = [];
-    this.contact = null;
+    this.document = null;
   }
 
   async register() {
     this.validate();
     if (this.errors.length > 0) return false;
 
-    this.contact = await ContactModel.create({
+    this.document = await ContactModel.create({
       nome: this.nome,
-      sobrenome: this.sobrenome,
       email: this.email,
       telefone: this.telefone,
       user_id: this.userId
@@ -53,9 +50,8 @@ class Contact {
     this.validate();
     if (this.errors.length > 0) return false;
 
-    this.contact = await ContactModel.findByIdAndUpdate(id, {
+    this.document = await ContactModel.findByIdAndUpdate(id, {
       nome: this.nome,
-      sobrenome: this.sobrenome,
       email: this.email,
       telefone: this.telefone,
     }, { new: true });

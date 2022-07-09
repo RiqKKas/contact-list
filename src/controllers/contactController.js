@@ -20,7 +20,7 @@ async function register(req, res) {
 
     req.flash('success', 'Contato registrado com sucesso.');
     req.session.save(function () {
-      return res.redirect(`/contact/index/${contact.contact._id}`);
+      return res.redirect(`/contact/index/${contact.document._id}`);
     });
   } catch (error) {
     console.log(error);
@@ -56,7 +56,7 @@ async function edit(req, res) {
 
     req.flash('success', 'Contato atualizado com sucesso.');
     req.session.save(function () {
-      return res.redirect(`/contact/index/${contact.contact._id}`);
+      return res.redirect(`/contact/index/${contact.document._id}`);
     });
   } catch (error) {
     console.log(error);

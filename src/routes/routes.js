@@ -1,20 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-const { loginRequired } = require('./src/middlewares/authentication');
+const { loginRequired } = require('../middlewares/authentication');
 
 //controllers
-const homeController = require('./src/controllers/HomeController');
-const loginController = require('./src/controllers/LoginController');
-const contactController = require('./src/controllers/ContactController');
+const homeController = require('../controllers/homeController');
+const loginController = require('../controllers/userController');
+const contactController = require('../controllers/contactController');
 
 router.get('/', homeController.index);
 
-router.get('/login/index', loginController.index);
-router.post('/login/register', loginController.register);
-router.post('/login/login', loginController.login);
-router.get('/login/logout', loginController.logout);
+//rotas de user
+router.get('/user/index', loginController.index);
+router.post('/user/register', loginController.register);
+router.post('/user/login', loginController.login);
+router.get('/user/logout', loginController.logout);
 
+//rotas de contact
 router.get('/contact/index', loginRequired, contactController.index);
 router.post('/contact/register', loginRequired, contactController.register);
 router.get('/contact/index/:id', loginRequired, contactController.editIndex);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --ignore public --ignore frontend",
+    "start": "nodemon src/server.js --ignore public --ignore frontend",
     "build": "webpack -w"
   },
   "keywords": [],

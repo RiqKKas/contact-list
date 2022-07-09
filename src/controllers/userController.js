@@ -1,4 +1,4 @@
-const Login = require('../models/LoginModel');
+const User = require('../models/UserModel');
 
 function index(req, res) {
   res.render('login');
@@ -6,11 +6,11 @@ function index(req, res) {
 
 async function register(req, res) {
   try {
-    const login = new Login(req.body);
-    const isRegistered = await login.register();
+    const user = new User(req.body);
+    const isRegistered = await user.register();
 
     if (!isRegistered) {
-      req.flash('errors', login.errors);
+      req.flash('errors', user.errors);
       req.session.save(function () {
         return res.redirect('back');
       });
@@ -30,11 +30,11 @@ async function register(req, res) {
 
 async function login(req, res) {
   try {
-    const login = new Login(req.body);
-    const isRegistered = await login.login();
+    const user = new User(req.body);
+    const isRegistered = await user.login();
 
     if (!isRegistered) {
-      req.flash('errors', login.errors);
+      req.flash('errors', user.errors);
       req.session.save(function () {
         return res.redirect('back');
       });
@@ -43,7 +43,7 @@ async function login(req, res) {
     }
 
     req.flash('success', 'Usuário logado.');
-    req.session.user = login.user;
+    req.session.user = user.document;
     req.session.save(function () {
       return res.redirect('/');
     });

@@ -8,11 +8,4 @@ function includeVerificationToken(req, res, next) {
   next();
 }
 
-function addGlobalVariables(req, res, next) {
-  res.locals.errors = req.flash('errors');
-  res.locals.success = req.flash('success');
-  res.locals.user = req.session.user;
-  next();
-}
-
-module.exports = { checkCsurfError, includeVerificationToken, addGlobalVariables };
+module.exports = { checkCsurfError, includeVerificationToken };

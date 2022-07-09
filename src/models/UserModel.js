@@ -2,19 +2,19 @@ const { Schema, model } = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
-const LoginSchema = new Schema({
+const UserSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true }
 });
 
-const LoginModel = model('Login', LoginSchema);
+const UserModel = model('users', UserSchema);
 
-class Login {
+class User {
   constructor({ email, password }) {
     this.email = this.cleanUp(email);
     this.password = this.cleanUp(password);
     this.errors = [];
-    this.user = null;
+    this.document = null;
   }
 
   async register() {
@@ -28,7 +28,7 @@ class Login {
 
     const salt = bcrypt.genSaltSync();
     this.password = bcrypt.hashSync(this.password, salt); //hash da senha
-    this.user = await LoginModel.create({ email: this.email, password: this.password });
+    this.document = await UserModel.create({ email: this.email, password: this.password });
 
     return true;
   }
@@ -37,13 +37,13 @@ class Login {
     this.validate();
     if (this.errors.length > 0) return false;
 
-    this.user = await LoginModel.findOne({ email: this.email });
+    this.document = await UserModel.findOne({ email: this.email });
 
     if (
-      !this.user ||
-      !bcrypt.compareSync(this.password, this.user.password)
+      !this.document ||
+      !bcrypt.compareSync(this.password, this.document.password)
       ) {
-      this.errors.push("Email ou senha inválidos.");
+      this.errors.push('Email ou senha inválidos.');
       return false;
     }
 
@@ -61,7 +61,7 @@ class Login {
   }
 
   async userExists() {
-    const user = await LoginModel.findOne({ email: this.email });
+    const user = await UserModel.findOne({ email: this.email });
     if (user) this.errors.push('Usuário já existe.');
   }
 
@@ -71,4 +71,4 @@ class Login {
   }
 }
 
-module.exports = Login;
+module.exports = User;
