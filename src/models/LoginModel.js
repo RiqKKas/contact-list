@@ -28,11 +28,23 @@ class Login {
 
     const salt = bcrypt.genSaltSync();
     this.password = bcrypt.hashSync(this.password, salt); //hash da senha
+    this.user = await LoginModel.create({ email: this.email, password: this.password });
 
-    try {
-      this.user = await LoginModel.create({ email: this.email, password: this.password });
-    } catch (err) {
-      console.log(err);
+    return true;
+  }
+
+  async login() {
+    this.validate();
+    if (this.errors.length > 0) return false;
+
+    this.user = await LoginModel.findOne({ email: this.email });
+
+    if (
+      !this.user ||
+      !bcrypt.compareSync(this.password, this.user.password)
+      ) {
+      this.errors.push("Email ou senha inválidos.");
+      return false;
     }
 
     return true;
@@ -50,7 +62,7 @@ class Login {
 
   async userExists() {
     const user = await LoginModel.findOne({ email: this.email });
-    if(user) this.errors.push('Usuário já existe.');
+    if (user) this.errors.push('Usuário já existe.');
   }
 
   cleanUp(value) {
