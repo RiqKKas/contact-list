@@ -1,3 +1,5 @@
+require('dotenv').config(); //modulo para uso de arquivo .env, como dados sensiveis
+
 const express = require('express');
 const app = express();
 
@@ -15,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //configs do server
-app.use(express.static(path.resolve(__dirname, '..', 'public'))); //conteudo estatico servido de /public
+app.use(express.static(path.resolve(__dirname, '..', 'public'))); //conteudo estatico servido de public/
 app.set('views', path.resolve(__dirname, 'views')); //diretorio das views
 app.set('view engine', 'ejs'); //engine ejs usada para redenrizacao 
 

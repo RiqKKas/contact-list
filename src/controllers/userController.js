@@ -1,7 +1,11 @@
 const User = require('../models/UserModel');
 
-function index(req, res) {
+function loginIndex(req, res) {
   res.render('login');
+}
+
+function registerIndex(req, res) {
+  res.render('register');
 }
 
 async function register(req, res) {
@@ -20,7 +24,7 @@ async function register(req, res) {
 
     req.flash('success', 'Usuário registrado com sucesso.');
     req.session.save(function () {
-      return res.redirect('back');
+      return res.redirect('/user/login');
     });
   } catch (error) {
     console.log(error);
@@ -58,4 +62,4 @@ function logout(req, res) {
   res.redirect('/');
 }
 
-module.exports = { index, register, login, logout };
+module.exports = { loginIndex, registerIndex, register, login, logout };

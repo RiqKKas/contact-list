@@ -1,6 +1,4 @@
-require('dotenv').config(); //modulo para uso de arquivo .env, como dados sensiveis
-
-const mongoose = require('mongoose'); //modulo para modelagem de objetos mongodb
+const mongoose = require('mongoose'); //modulo para manipulacao da base de dados mongodb
 
 mongoose.connection.on('open', () => {
   console.log('Successfully connected to database.');

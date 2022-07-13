@@ -1,12 +1,34 @@
+* {
+  color: #babbb8;
+  outline: none;
+}
+
+body {
+  background-color: #0d1117;
+}
+
+nav {
+  background-color: #161b22;
+}
+
+.table tr {
+  border-top: 1px solid #dad6eb;
+}
+
 .table tr td {
   border: none;
+  text-align: center;
+}
+
+.form-control {
+  background-color: #e5e5e5;
+}
+
+.btn-block, label {
+  font-weight: bold;
 }
 
 @media all and (max-width: 800px) {
-  .table tr {
-    border: 1px solid #dad6eb;
-  }
-
   .table tr td {
     display: block;
     text-align: center;

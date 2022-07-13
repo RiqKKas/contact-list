@@ -5,16 +5,17 @@ const { loginRequired } = require('../middlewares/authentication');
 
 //controllers
 const homeController = require('../controllers/homeController');
-const loginController = require('../controllers/userController');
+const userController = require('../controllers/userController');
 const contactController = require('../controllers/contactController');
 
 router.get('/', homeController.index);
 
 //rotas de user
-router.get('/user/index', loginController.index);
-router.post('/user/register', loginController.register);
-router.post('/user/login', loginController.login);
-router.get('/user/logout', loginController.logout);
+router.get('/user/login', userController.loginIndex);
+router.post('/user/login', userController.login);
+router.get('/user/register', userController.registerIndex);
+router.post('/user/register', userController.register);
+router.get('/user/logout', userController.logout);
 
 //rotas de contact
 router.get('/contact/index', loginRequired, contactController.index);
