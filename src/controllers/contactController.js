@@ -18,7 +18,7 @@ async function register(req, res) {
       return;
     }
 
-    req.flash('success', 'Contato registrado com sucesso.');
+    req.flash('success', 'Contato registrado.');
     req.session.save(function () {
       return res.redirect('/');
     });
@@ -54,7 +54,7 @@ async function edit(req, res) {
       return;
     }
 
-    req.flash('success', 'Contato atualizado com sucesso.');
+    req.flash('success', 'Contato atualizado.');
     req.session.save(function () {
       return res.redirect('/');
     });
@@ -71,7 +71,7 @@ async function deleteByIndex(req, res) {
     const contact = Contact.deleteByIndex(req.params.id);
     if (!contact) return res.render('404');
 
-    req.flash('success', 'Contato deletado com sucesso.');
+    req.flash('success', 'Contato deletado.');
     req.session.save(function () {
       return res.redirect('back');
     });

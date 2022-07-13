@@ -65,7 +65,7 @@ class Contact {
   }
 
   validate() {
-    if (this.email && !validator.isEmail(this.email)) this.errors.push('E-mail inválido');
+    if (this.email && !validator.isEmail(this.email)) this.errors.push('E-mail inválido.');
     if (!this.nome) this.errors.push('Nome é um campo obrigatório.');
     if (!this.email && !this.nome) this.errors.push('Um destes contatos deve ser informados: e-mail ou telefone.');
   }

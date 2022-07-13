@@ -22,7 +22,7 @@ async function register(req, res) {
       return;
     }
 
-    req.flash('success', 'Usuário registrado com sucesso.');
+    req.flash('success', 'Usuário registrado.');
     req.session.save(function () {
       return res.redirect('/user/login');
     });
@@ -46,7 +46,6 @@ async function login(req, res) {
       return;
     }
 
-    req.flash('success', 'Usuário logado.');
     req.session.user = user.document;
     req.session.save(function () {
       return res.redirect('/');
@@ -58,8 +57,9 @@ async function login(req, res) {
 }
 
 function logout(req, res) {
-  req.session.destroy();
-  res.redirect('/');
+  req.session.destroy(function (err) {
+    res.redirect('/');
+  });
 }
 
 module.exports = { loginIndex, registerIndex, register, login, logout };

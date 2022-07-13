@@ -10,9 +10,10 @@ const UserSchema = new Schema({
 const UserModel = model('users', UserSchema);
 
 class User {
-  constructor({ email, password }) {
+  constructor({ email, password, passwordConfirmation }) {
     this.email = this.cleanUp(email);
     this.password = this.cleanUp(password);
+    this.passwordConfirmation = this.cleanUp(passwordConfirmation);
     this.errors = [];
     this.document = null;
   }
@@ -51,12 +52,15 @@ class User {
   }
 
   validate() {
-    if (!validator.isEmail(this.email)) this.errors.push('E-mail inválido');
+    if (!validator.isEmail(this.email)) this.errors.push('E-mail inválido.');
     if (
       this.password.length < 3
       || this.password.length > 50
     ) {
-      this.errors.push('A senha precisa ter entre 3 e 50 caracteres');
+      this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
+    } 
+    if (this.passwordConfirmation && this.password !== this.passwordConfirmation) {
+      this.errors.push('As senhas não coincidem.');
     }
   }
 

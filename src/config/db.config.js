@@ -12,7 +12,7 @@ const config = {
   uri: process.env.CONNECTION_MONGO,
   options: {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   }
 }
 

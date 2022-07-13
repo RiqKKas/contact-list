@@ -8,6 +8,7 @@ const homeController = require('../controllers/homeController');
 const userController = require('../controllers/userController');
 const contactController = require('../controllers/contactController');
 
+//rota home
 router.get('/', homeController.index);
 
 //rotas de user

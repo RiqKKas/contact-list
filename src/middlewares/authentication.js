@@ -8,7 +8,7 @@ function sessionOptions() {
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24, //24hrs
+      maxAge: 86400000, //24hrs
       httpOnly: true
     }
   });
