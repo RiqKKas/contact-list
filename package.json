@@ -1,15 +1,15 @@
 {
-  "name": "boilerplate",
+  "name": "contact-list",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "nodemon src/server.js --ignore public --ignore frontend",
+    "dev": "nodemon src/server.js --ignore public --ignore frontend",
     "build": "webpack -w"
   },
   "keywords": [],
   "author": "the-riquelme",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
@@ -20,7 +20,6 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
-    "helmet": "^5.1.0",
     "mongoose": "^6.4.2",
     "regenerator-runtime": "^0.13.9",
     "validator": "^13.7.0"

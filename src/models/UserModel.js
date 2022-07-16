@@ -14,8 +14,8 @@ class User {
     this.email = this.cleanUp(email);
     this.password = this.cleanUp(password);
     this.passwordConfirmation = this.cleanUp(passwordConfirmation);
-    this.errors = [];
-    this.document = null;
+    this.errors = []; //feedbacks dos impedimentos
+    this.document = null; //representacao dos dados salvos no bd da ocorrencia
   }
 
   async register() {
@@ -28,7 +28,7 @@ class User {
     if (this.errors.length > 0) return false;
 
     const salt = bcrypt.genSaltSync();
-    this.password = bcrypt.hashSync(this.password, salt); //hash da senha
+    this.password = bcrypt.hashSync(this.password, salt); //hash da senha sera salvo no bd
     this.document = await UserModel.create({ email: this.email, password: this.password });
 
     return true;
@@ -43,7 +43,7 @@ class User {
     if (
       !this.document ||
       !bcrypt.compareSync(this.password, this.document.password)
-      ) {
+    ) {
       this.errors.push('Email ou senha inválidos.');
       return false;
     }
@@ -58,7 +58,7 @@ class User {
       || this.password.length > 50
     ) {
       this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
-    } 
+    }
     if (this.passwordConfirmation && this.password !== this.passwordConfirmation) {
       this.errors.push('As senhas não coincidem.');
     }
@@ -69,6 +69,7 @@ class User {
     if (user) this.errors.push('Usuário já existe.');
   }
 
+  //verifica o tipo do parametro, garantindo que seja um string
   cleanUp(value) {
     if (typeof value !== 'string') return '';
     else return value;

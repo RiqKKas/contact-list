@@ -1,19 +1,19 @@
 const mongoose = require('mongoose'); //modulo para manipulacao da base de dados mongodb
+const { DB_USERNAME, DB_PASSWORD, DB_HOSTNAME, DB_PORT, DB_DATABASE } = process.env; //definidos no arquivo .env
 
 mongoose.connection.on('open', () => {
-  console.log('Successfully connected to database.');
+  console.log('Conectado com sucesso ao banco de dados.');
 });
 
 mongoose.connection.on('error', () => {
-  throw new Error('Could not connect to MongoDB.');
+  throw new Error('Nao foi possivel conectar ao MongoDB.');
 });
 
+const uri = `mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOSTNAME}:${DB_PORT}/${DB_DATABASE}?authSource=admin`;
+
 const config = {
-  uri: process.env.CONNECTION_MONGO,
-  options: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 }
 
-module.exports = { connect: () => mongoose.connect(config.uri, config.options) };
+module.exports = { connect: () => mongoose.connect(uri, config), uri };

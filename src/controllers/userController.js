@@ -1,6 +1,6 @@
 const User = require('../models/UserModel');
 
-function loginIndex(req, res) {
+function index(req, res) {
   res.render('login');
 }
 
@@ -62,4 +62,4 @@ function logout(req, res) {
   });
 }
 
-module.exports = { loginIndex, registerIndex, register, login, logout };
+module.exports = { index, registerIndex, register, login, logout };

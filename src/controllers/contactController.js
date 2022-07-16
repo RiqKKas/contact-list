@@ -42,6 +42,7 @@ async function editIndex(req, res) {
 async function edit(req, res) {
   try {
     if (!req.params.id) return res.render('404');
+
     const contact = new Contact(req.body, req.session.user._id);
     const isUpdated = await contact.edit(req.params.id);
 

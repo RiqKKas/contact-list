@@ -11,14 +11,14 @@ const contactController = require('../controllers/contactController');
 //rota home
 router.get('/', homeController.index);
 
-//rotas de user
-router.get('/user/login', userController.loginIndex);
+//rotas user
+router.get('/user/login', userController.index);
 router.post('/user/login', userController.login);
 router.get('/user/register', userController.registerIndex);
 router.post('/user/register', userController.register);
 router.get('/user/logout', userController.logout);
 
-//rotas de contact
+//rotas contact
 router.get('/contact/index', loginRequired, contactController.index);
 router.post('/contact/register', loginRequired, contactController.register);
 router.get('/contact/index/:id', loginRequired, contactController.editIndex);

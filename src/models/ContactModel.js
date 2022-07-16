@@ -17,8 +17,8 @@ class Contact {
     this.email = this.cleanUp(email);
     this.telefone = this.cleanUp(telefone);
     this.userId = this.cleanUp(userId);
-    this.errors = [];
-    this.document = null;
+    this.errors = []; //feedbacks dos impedimentos
+    this.document = null; //representacao dos dados salvos no bd da ocorrencia
   }
 
   async register() {
