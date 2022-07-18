@@ -30,4 +30,4 @@ services:
       - db
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
-    command: npm run dev
+    command: npm run start
