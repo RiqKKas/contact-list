@@ -35,7 +35,9 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ✔️ [Mongodb](https://www.mongodb.com/docs/?_ga=2.267063822.143184075.1657893644-153404656.1656517904)
 
-✔️ [Docker](https://docs.docker.com/compose/gettingstarted/)
+✔️ [Docker](https://docs.docker.com/compose/gettingstarted/) 
+
+✔️ [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/) 
 
 ---
 
