@@ -33,7 +33,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ✔️ [Express](https://expressjs.com/pt-br/)
 
-✔️ [Mongodb](https://www.mongodb.com/docs/?_ga=2.267063822.143184075.1657893644-153404656.1656517904)
+✔️ [MongoDB](https://www.mongodb.com/docs/?_ga=2.267063822.143184075.1657893644-153404656.1656517904)
 
 ✔️ [Docker](https://docs.docker.com/compose/gettingstarted/) 
 
